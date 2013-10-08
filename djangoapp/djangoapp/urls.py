@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^appmanager/', include('appmanager.urls')),
+    url(r'^userdb/'	   , include('userdb.urls')),
     # url(r'^djangoapp/', include('djangoapp.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
