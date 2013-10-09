@@ -8,6 +8,7 @@ from datetime import datetime
 
 def sync(request):
 	jsonobj = simplejson.loads(request.POST.get('jsondata',''))
+	print "Received objects: %d" % (len(jsonobj))
 	for item in jsonobj:
 		imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
 		outputimg = open(imgnewurl, "wb")
