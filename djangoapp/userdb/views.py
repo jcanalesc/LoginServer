@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import simplejson
 from userdb.models import User
 from random import randint
+
 def sync(request):
 	jsonobj = simplejson.loads(request.POST.get('jsondata',''))
 	for item in jsonobj:
@@ -11,4 +12,9 @@ def sync(request):
 		outputimg = open(imgnewurl, "wb")
 		outputimg.write(item["foto"].decode("base64"))
 		outputimg.close()
-	return HttpResponse('{"success": true}', content_type="application/json")
+	response = HttpResponse('{"success": true}', content_type="application/json")
+	response["Access-Control-Allow-Origin"] = "*"
+	response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+	response["Access-Control-Max-Age"] = "1000"  
+	response["Access-Control-Allow-Headers"] = "*"
+	return response
