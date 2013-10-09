@@ -6,7 +6,7 @@ from userdb.models import User
 from random import randint
 
 def sync(request):
-	jsonobj = simplejson.loads(request.POST.get('jsondata',''))
+	jsonobj = simplejson.loads(request.GET.get('jsondata',''))
 	for item in jsonobj:
 		imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
 		outputimg = open(imgnewurl, "wb")
