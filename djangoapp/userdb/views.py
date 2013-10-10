@@ -22,8 +22,8 @@ def sync(request):
 			item["edad"] = int(item["edad"])
 			u = User(**item)
 			u.save()
-			response = HttpResponse('{"success": true}', content_type="application/json")
-			return response
+		response = HttpResponse('{"success": true}', content_type="application/json")
+		return response
 	except:
 		response = HttpResponse('{"success": false}', content_type="application/json")
 		return response
