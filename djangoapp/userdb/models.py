@@ -31,7 +31,7 @@ class User(models.Model):
 	apellido= models.CharField("Apellido del usuario",	max_length=50) 
 	foto	= models.ImageField("Foto de perfil",	upload_to="userpics")
 	email	= models.EmailField("Direccion de email del usuario", max_length=254)
-	edad	= models.IntegerField("Edad del usuario")
+	edad	= models.DateField("Fecha de nacimiento del usuario")
 	sexo	= models.CharField("Sexo del usuario", choices=SEX_CHOICES, default=sM, max_length=2)
 	direccion = models.CharField("Direccion del usuario", max_length=200)
 	pref1	= models.CharField("Preferencia de trago 1", choices=DRINK_CHOICES, default=dVodka, max_length=15)

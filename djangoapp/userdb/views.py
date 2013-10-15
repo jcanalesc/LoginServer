@@ -29,7 +29,6 @@ def sync(request):
 			del item["foto"]
 			del item["ts"]
 			item["foto"] = imgnewurl
-			item["edad"] = int(item["edad"])
 			u = User(**item)
 			u.save()
 		response = HttpResponse('{"success": true}', content_type="application/json")
