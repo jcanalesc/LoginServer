@@ -5,10 +5,14 @@ from django.utils import simplejson
 from userdb.models import User
 from random import randint
 from datetime import datetime
+import os
+
+
 
 def sync(request):
 	response = None
 	try:
+		print os.getcwd()
 		jsonobj = simplejson.loads(request.POST.get('jsondata',''))
 		print "Received objects: %d" % (len(jsonobj))
 		for item in jsonobj:
