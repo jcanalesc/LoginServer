@@ -14,6 +14,7 @@ def sync(request):
 		for item in jsonobj:
 			imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
 			outputimg = open(imgnewurl, "wb")
+			print "abri el archivo"
 			outputimg.write(item["foto"].decode("base64"))
 			outputimg.close()
 			del item["foto"]
