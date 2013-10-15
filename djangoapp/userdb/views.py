@@ -2,6 +2,9 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson
+from django.core.files import File
+
+
 from userdb.models import User
 from random import randint
 from datetime import datetime
@@ -17,7 +20,7 @@ def sync(request):
 		print "Received objects: %d" % (len(jsonobj))
 		for item in jsonobj:
 			imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
-			outputimg = open(imgnewurl, "wb")
+			outputimg = File(open(MEDIA_ROOT + imgnewurl, "wb"))
 			print "abri el archivo"
 			outputimg.write(item["foto"].decode("base64"))
 			outputimg.close()
