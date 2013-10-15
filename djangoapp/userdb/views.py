@@ -16,12 +16,12 @@ import os
 def sync(request):
 	response = None
 	try:
-		site_path = os.path.abspath(os.path.dirname(__file__))
+		site_path = "/root/LoginServer/djangoapp/"
 		#print site_path
 		jsonobj = simplejson.loads(request.POST.get('jsondata',''))
 		print "Received objects: %d" % (len(jsonobj))
 		for item in jsonobj:
-			imgnewurl = "static/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
+			imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
 			outputimg = File(open(os.path.join(site_path,imgnewurl), "wb"))
 			#print "abri el archivo"
 			outputimg.write(item["foto"].decode("base64"))
