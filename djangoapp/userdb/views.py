@@ -10,14 +10,14 @@ from random import randint
 from datetime import datetime
 import os
 
-import appname
 
 
 
 def sync(request):
 	response = None
 	try:
-		site_path = os.path.dirname(appname.__file__)
+		site_path = os.path.abspath(os.path.dirname(__file__))
+		print site_path
 		jsonobj = simplejson.loads(request.POST.get('jsondata',''))
 		print "Received objects: %d" % (len(jsonobj))
 		for item in jsonobj:
