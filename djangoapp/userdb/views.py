@@ -25,5 +25,5 @@ def sync(request):
 		response = HttpResponse('{"success": true}', content_type="application/json")
 		return response
 	except Exception as e:
-		response = HttpResponse('{"success": false, "error": '+str(e)+'}', content_type="application/json")
+		response = HttpResponse('{"success": false, "error": "'+str(e)+'"}', content_type="application/json")
 		return response
