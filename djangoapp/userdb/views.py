@@ -20,7 +20,7 @@ def sync(request):
 		print "Received objects: %d" % (len(jsonobj))
 		for item in jsonobj:
 			imgnewurl = "userpics/" + datetime.now().strftime("%Y%m%d%H%M%S") + "_%d.png" % (randint(10,99))
-			outputimg = File(open(MEDIA_ROOT + imgnewurl, "wb"))
+			outputimg = File(open(imgnewurl, "wb"))
 			print "abri el archivo"
 			outputimg.write(item["foto"].decode("base64"))
 			outputimg.close()
