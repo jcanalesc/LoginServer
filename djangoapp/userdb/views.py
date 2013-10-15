@@ -16,7 +16,7 @@ import os
 def sync(request):
 	response = None
 	try:
-		site_path = "/root/LoginServer/djangoapp/"
+		site_path = "/root/media/"
 		#print site_path
 		jsonobj = simplejson.loads(request.POST.get('jsondata',''))
 		print "Received objects: %d" % (len(jsonobj))
