@@ -28,7 +28,7 @@ def sync(request):
 			del item["foto"]
 			del item["ts"]
 			item["foto"] = imgnewurl
-			print item["edad"]	
+			item["edad"] = datetime.datetime().strptime(item["edad"], "%Y-%m-%d")
 			u = User(**item)
 			u.save()
 		response = HttpResponse('{"success": true}', content_type="application/json")
