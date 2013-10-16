@@ -22,6 +22,7 @@ class User(models.Model):
 	dCerveza	= "cerveza"
 	dVino		= "vino"
 	dTequila	= "tequila"
+	dOtro		= "otro"
 
 	SEX_CHOICES = (
 		(sM, "Masculino"),
@@ -35,6 +36,7 @@ class User(models.Model):
 		(dCerveza, "Cerveza"),
 		(dVino, "Vino"),
 		(dTequila, "Tequila"),
+		(dOtro, "Otro"),
 	)
 	COMUNA_CHOICES = get_comuna_choices()
 	rut 	= models.CharField("Rut del usuario", 		max_length=20, primary_key=True)
