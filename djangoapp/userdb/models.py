@@ -8,8 +8,8 @@ def get_comuna_choices():
 	reslist = []
 	with open("/root/comunas.json", "r") as f:
 		obj = simplejson.loads(f.read())
-		for key, value in obj.iteritems():
-			reslist.append((int(key), value,))
+		for elem in obj:
+			reslist.append((int(elem["codigo"]), elem["nombre"],))
 	return tuple(reslist)
 
 class User(models.Model):
