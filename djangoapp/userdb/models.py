@@ -1,6 +1,16 @@
 from django.db import models
+from django.utils import simplejson
+
 
 # Create your models here.
+
+def get_comuna_choices():
+	reslist = []
+	with open("/root/comunas.json", "r") as f:
+		obj = simplejson.loads(f.read())
+		for key, value in obj.iteritems():
+			reslist.append((int(key), value,))
+	return tuple(reslist)
 
 class User(models.Model):
 	sM = "M"
@@ -26,6 +36,7 @@ class User(models.Model):
 		(dVino, "Vino"),
 		(dTequila, "Tequila"),
 	)
+	COMUNA_CHOICES = get_comuna_choices()
 	rut 	= models.CharField("Rut del usuario", 		max_length=20, primary_key=True)
 	nombre 	= models.CharField("Nombre del usuario", 	max_length=50) 
 	apellido= models.CharField("Apellido del usuario",	max_length=50) 
@@ -34,6 +45,7 @@ class User(models.Model):
 	edad	= models.DateField("Fecha de nacimiento del usuario")
 	sexo	= models.CharField("Sexo del usuario", choices=SEX_CHOICES, default=sM, max_length=2)
 	direccion = models.CharField("Direccion del usuario", max_length=200)
+	comuna = models.IntegerField("Comuna del usuario", choices=COMUNA_CHOICES, default=295)
 	pref1	= models.CharField("Preferencia de trago 1", choices=DRINK_CHOICES, default=dVodka, max_length=15)
 	pref2	= models.CharField("Preferencia de trago 2", choices=DRINK_CHOICES, default=dVodka, max_length=15)
 	pref3	= models.CharField("Preferencia de trago 2", choices=DRINK_CHOICES, default=dVodka, max_length=15)
