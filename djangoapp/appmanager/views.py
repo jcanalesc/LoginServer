@@ -30,7 +30,7 @@ def auth(request):
 	except:
 		pass
 	finally:
-		return HttpResponse(simplejson.dumps({response_data}), content_type="application/json")
+		return HttpResponse(simplejson.dumps(response_data), content_type="application/json")
 
 
 
