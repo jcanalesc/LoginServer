@@ -55,4 +55,9 @@ class User(models.Model):
 
 	def __unicode__(self):
 		return "(%s) %s %s" % (self.rut, self.apellido, self.nombre)
+	def getcomunaName(self):
+		for cod, name in self.COMUNA_CHOICES:
+			if cod == self.comuna:
+				return name
+		return ""
 

@@ -48,7 +48,7 @@ def getExcel(request):
 	sheet.write(0, 1, "Nombre")
 	sheet.write(0, 2, "Apellido")
 	sheet.write(0, 3, "Email")
-	sheet.write(0, 4, "Edad")
+	sheet.write(0, 4, "Fecha de nacimiento")
 	sheet.write(0, 5, "Sexo")
 	sheet.write(0, 6, "Direccion")
 	sheet.write(0, 7, "Comuna")
