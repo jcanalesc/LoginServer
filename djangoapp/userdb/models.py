@@ -6,7 +6,7 @@ from django.utils import simplejson
 
 def get_comuna_choices():
 	reslist = []
-	with open("/root/comunas.json", "r") as f:
+	with open("/home/jcanales/comunas.json", "r") as f:
 		obj = simplejson.loads(f.read())
 		for elem in obj:
 			reslist.append((int(elem["codigo"]), elem["nombre"],))

@@ -9,7 +9,7 @@ from userdb.models import User
 from random import randint
 from datetime import datetime
 import os
-
+import StringIO
 
 
 
@@ -36,3 +36,54 @@ def sync(request):
 	except Exception as e:
 		response = HttpResponse('{"success": false, "error": "'+str(e)+'"}', content_type="application/json")
 		return response
+
+def getExcel(request):
+	import xlwt
+
+	ss = StringIO.StringIO()
+
+	wb = xlwt.Workbook()
+	sheet = wb.add_sheet("Usuarios")
+	sheet.write(0, 0, "ID")
+	sheet.write(0, 1, "Rut")
+	sheet.write(0, 2, "Nombre")
+	sheet.write(0, 3, "Apellido")
+	sheet.write(0, 4, "Email")
+	sheet.write(0, 5, "Edad")
+	sheet.write(0, 6, "Sexo")
+	sheet.write(0, 7, "Direccion")
+	sheet.write(0, 8, "Comuna")
+	sheet.write(0, 9, "Preferencia 1")
+	sheet.write(0, 10, "Preferencia 2")
+	sheet.write(0, 11, "Preferencia 3")
+	for ix, usr in enumerate(User.objects.all()):
+		sheet.write(ix+1, 0, usr.id)
+		sheet.write(ix+1, 1, usr.rut)
+		sheet.write(ix+1, 2, usr.nombre)
+		sheet.write(ix+1, 3, usr.apellido)
+		sheet.write(ix+1, 4, usr.email)
+		sheet.write(ix+1, 5, usr.edad)
+		sheet.write(ix+1, 6, usr.sexo)
+		sheet.write(ix+1, 7, usr.direccion)
+		sheet.write(ix+1, 8, usr.comuna)
+		sheet.write(ix+1, 9, usr.pref1)
+		sheet.write(ix+1, 10, usr.pref2)
+		sheet.write(ix+1, 11, usr.pref3)
+	
+	sheet.save(ss)
+
+	bindata = ss.getvalue()
+	ss.close()
+	response = HttpResponse(bindata)
+	response["Content-Description"] = "File Transfer"
+	#response["Content-Type"] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+	response["Content-Type"] = "application/vnd.ms-excel"
+	response["Content-Disposition"] = "attachment; filename='userdb.xls'"
+	response["Content-Transfer-Encoding"] = "binary"
+	response["Expires"] = 0
+	response["Cache-Control"] = "must-revalidate"
+	response["Pragma"] = "public"
+	response["Content-Length"] = len(bindata)
+
+	return response
+
