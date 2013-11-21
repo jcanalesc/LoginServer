@@ -68,7 +68,7 @@ def getExcel(request):
 		sheet.write(ix+1, 9, usr.pref2)
 		sheet.write(ix+1, 10, usr.pref3)
 	
-	sheet.save(ss)
+	wb.save(ss)
 
 	bindata = ss.getvalue()
 	ss.close()
