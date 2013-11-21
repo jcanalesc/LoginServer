@@ -63,7 +63,7 @@ def getExcel(request):
 		sheet.write(ix+1, 4, usr.edad.strftime("%Y-%m-%d"), xlwt.easyxf("", "YYYY/MM/DD"))
 		sheet.write(ix+1, 5, usr.sexo)
 		sheet.write(ix+1, 6, usr.direccion)
-		sheet.write(ix+1, 7, usr.comuna)
+		sheet.write(ix+1, 7, usr.getcomunaName())
 		sheet.write(ix+1, 8, usr.pref1)
 		sheet.write(ix+1, 9, usr.pref2)
 		sheet.write(ix+1, 10, usr.pref3)
