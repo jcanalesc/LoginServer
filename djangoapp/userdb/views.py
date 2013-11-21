@@ -60,7 +60,7 @@ def getExcel(request):
 		sheet.write(ix+1, 1, usr.nombre)
 		sheet.write(ix+1, 2, usr.apellido)
 		sheet.write(ix+1, 3, usr.email)
-		sheet.write(ix+1, 4, usr.edad)
+		sheet.write(ix+1, 4, usr.edad.strftime("%Y-%m-%d"), xlwt.easyxf("", "YYYY/MM/DD"))
 		sheet.write(ix+1, 5, usr.sexo)
 		sheet.write(ix+1, 6, usr.direccion)
 		sheet.write(ix+1, 7, usr.comuna)
