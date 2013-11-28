@@ -6,5 +6,6 @@ from userdb import views
 
 urlpatterns = patterns('',
     url(r'^sync/', views.sync, name='sync'),
-    url(r'^getExcel/$', views.getExcel)
+    url(r'^getExcel/$', views.getExcel),
+    url(r'^download/$', views.download)
 )

@@ -85,3 +85,8 @@ def getExcel(request):
 
 	return response
 
+def download(request):
+	res = []
+	for u in User.objects.all():
+		res.append({'nombre': "%s %s" % (u.nombre, u.apellido), 'rut': u.rut })
+	return HttpResponse(simplejson.dumps(res), content_type="application/json")
